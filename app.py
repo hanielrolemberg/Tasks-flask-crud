@@ -29,10 +29,10 @@ def get_tasks():
             }
     return jsonify(output)
 
-@app.route('/tasks/<int:id>', methods=['GET'])
+@app.route('/tasks/<int:id>', methods=['GET']) #o identificador é colocado dentro do <> . lá tem duas info - tipo inteiro, identificação
 def get_task(id):
-    for t in tasks:
-        if t.id == id:
+    for t in tasks: #"t" vai ser cada atividade que eu tiver em tasks
+        if t.id == id: #se essa variável "t" tiver o identificador "id" sendo igual ao identificador que recebi em cima (que é o que o cliente procura/solicita)
             return jsonify(t.to_dict())
 
     return jsonify({"message": "Não foi possível encontrar a atividade"}), 404 
@@ -61,7 +61,7 @@ def delete_task(id):
     for t in tasks:
         if t.id == id:
             task = t
-            break
+            break   # tá procurando algo na lista e já achou, para!
     
     if not task:
         return jsonify({"message": "Não foi possível encontrar a atividade"}), 404
